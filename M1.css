@@ -1,0 +1,83 @@
+.conteiner{
+    width: 1000px;
+    height: auto;
+    border: solid black;
+}
+.menu{
+    background-color: yellowgreen ;
+    border: solid black;
+    height: 100px;
+    display: flex;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    margin: 15px;
+    flex: 1;
+    border: solid black;
+}
+.header{
+    background-color: 6495ED ;
+    height: 300px;
+    border: solid black;
+    display: flex;
+}
+
+.banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+    flex-basis: 800px;
+    border: solid black;
+    margin: 20px;
+    margin-right: 0;
+}
+.columna{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    
+}
+.info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    margin: 5px;
+    border: solid black;
+    height: 90px;
+}
+.main{
+    background-color: grey;
+    border: solid black;
+    height: 500px;
+    display: flex;
+}
+.lados{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: pink;
+    margin: 10px;
+    flex-basis: 200px;
+    border: solid black;
+}
+.articulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    margin: 10px;
+    flex-basis: 500px;
+    border: solid black;
+}
+
+.footer{
+    height: 50px;
+    border: solid black;
+    background-color: yellow;
+}
+
