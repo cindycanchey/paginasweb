@@ -1,71 +1,46 @@
-let movieNameRef = document.getElementById("movie-name");
-let searchBtn = document.getElementById("search-btn");
-let result = document.getElementById("result");
-let getMovie = () => {
-  let movieName = movieNameRef.value;
-  let url = `http://www.omdbapi.com/?t=${movieName}&apikey=${key}`;
+let form = document.getElementById("form");
+let textarea = document.getElementById("textarea");
+let msg = document.getElementById("msg");
+let post = document.getElementById("post");
 
-  if (movieName.length <= 0) {
-	result.innerHTML = `<h3 class="msg">Please Enter A Movie Name</h3>`;
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  formValidation();
+});
+
+let formValidation = () => {
+  if (textarea.value === "") {
+    msg.innerHTML = "Este apartado NO puede estar vacio";
   } else {
-	fetch(url)
-	  .then((resp) => resp.json())
-
-	  .then((data) => {
-		if (data.Response == "True") {
-		  result.innerHTML = `<div class="info">
-
-				<img src=${data.Poster} class="poster">
-
-				<div>
-
-				<h2>${data.Title}</h2>
-
-				<div class="rating">
-
-				<img src="star-icon.svg">
-
-				<h4>${data.imdbRating}</h4>
-
-				</div>
-
-				<dic class="details">
-
-				<span>${data.Rated}</span>
-
-				<span>${data.Year}</span>
-
-				<span>${data.Runtime}</span>
-
-				</div>
-
-				<div class="genre">
-
-				<div>${data.Genre.split(",").join("</div><div>")}</div>
-
-				</div>
-
-				</div>
-
-				</div>
-
-				<h3>Plot:</h3>
-
-				<p>${data.Plot}</p>
-
-				<h3>Cast:</h3>
-
-				<p>${data.Actors}</p>
-				`;
-		} else {
-		  result.innerHTML = '<h3 class="msg>Ha ocurrio un error</h3>';
-		}
-	  })
-	  //if error occurs
-	  .catch(() => {
-		result.innerHTML = '<h3 class="msg>Ha ocurrio un error</h3>';
-	  });
+    msg.innerHTML = "";
+    acceptData();
   }
 };
-searchBtn.addEventListener("click", getMovie);
-window.addEventListener("load", getMovie);
+let data = {};
+
+let acceptData = () => {
+  data["text"] = textarea.value;
+  createPost();
+};
+
+let createPost = () => {
+  post.innerHTML += `
+    <div class="comentario">
+      <p>${data.text}</p>
+      <span>
+        <i onclick="editpost(this)" class="fas fa-edit"></i>
+        <i onclick="deletepost(this)" class="fas fa-trash-alt"></i>
+      </span>
+    </div>
+    `
+    textarea.value = "";
+};
+
+let editpost = (e) => {
+    textarea.value = e.parentElement.previousElementSibling.innerHTML;
+    e.parentElement.parentElement.remove();
+}
+
+let deletepost = (e) => {
+    e.parentElement.parentElement.remove();
+}
